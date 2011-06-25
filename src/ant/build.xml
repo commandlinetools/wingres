@@ -1,0 +1,49 @@
+<!-- https://github.com/commandlinetools/wingres - src/ant/build.xml
+
+   (c) Copyright 2011 Michael A. Wright.  All Rights Reserved.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing,
+   software distributed under the License is distributed on an
+   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, either express or implied.  See the License for the
+   specific language governing permissions and limitations
+   under the License.
+
+-->
+<project name="gres" default="all" basedir="../..">
+    <!--
+
+     To build Gres requires both ant 1.8 (or higher) and Java 5 (or higher)
+     already be installed.  This script calls get-dependencies.ant, which uses
+     ivy.xml, to install ivy and download Gres dependencies.
+
+    -->
+    <property file="${basedir}/src/ant/build.properties"/>
+
+    <target name="build.gres" description="gets dependencies and builds Gres">
+        <ant antfile="${ant.src.dir}/get-dependencies.ant"/>
+        <ant antfile="${ant.src.dir}/build-wingres.ant"/>
+    </target>
+
+    <target name="run.tests" depends="build.gres" description="builds Gres and runs continuous tests">
+        <ant antfile="${ant.src.dir}/run-wingres-tests.ant"/>
+    </target>
+
+    <target name="all" depends="run.tests" description="runs continuous and release tests">
+        <echo>ran all tests</echo>
+    </target>
+
+    <target name="clean" description="removes build artifacts">
+        <delete includeemptydirs="true" quiet="true">
+            <fileset dir="${build.dir}"/>
+            <fileset dir="${dist.dir}"/>
+        </delete>
+    </target>
+
+</project>
