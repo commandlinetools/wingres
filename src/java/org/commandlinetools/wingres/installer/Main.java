@@ -17,8 +17,6 @@
  */
 package org.commandlinetools.wingres.installer;
 
-import sun.net.idn.StringPrep;
-
 import java.io.File;
 
 /**
@@ -30,7 +28,10 @@ public class Main {
     if (0 < args.length) {
       System.err.println("args[0]=" + args[0]);
       File target = new File(args[0]);
-      target.mkdir();
+      boolean created = target.mkdir();
+      if (!created) {
+        System.err.println("Wingres Installer unable to create " + target.getAbsolutePath());
+      }
     }
   }
 }
