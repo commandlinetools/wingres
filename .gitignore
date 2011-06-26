@@ -1,0 +1,10 @@
+*~
+.idea/*
+.pjm/*
+build/*
+dist/*
+ivy/*
+lib/*
+out/*
+reports/*
+
