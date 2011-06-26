@@ -26,16 +26,16 @@
     -->
     <property file="${basedir}/src/ant/build.properties"/>
 
-    <target name="build.gres" description="gets dependencies and builds Gres">
+    <target name="build.gres" description="gets dependencies and builds WinGres">
         <ant antfile="${ant.src.dir}/get-dependencies.ant"/>
         <ant antfile="${ant.src.dir}/build-wingres.ant"/>
     </target>
 
-    <target name="run.tests" depends="build.gres" description="builds Gres and runs continuous tests">
+    <target name="run.tests" depends="build.gres" description="runs WinGres tests">
         <ant antfile="${ant.src.dir}/run-wingres-tests.ant"/>
     </target>
 
-    <target name="all" depends="run.tests" description="runs continuous and release tests">
+    <target name="all" depends="run.tests" description="runs tests">
         <echo>ran all tests</echo>
     </target>
 
