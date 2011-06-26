@@ -40,10 +40,9 @@
     </target>
 
     <target name="clean" description="removes build artifacts">
-        <delete includeemptydirs="true" quiet="true">
-            <fileset dir="${build.dir}"/>
-            <fileset dir="${dist.dir}"/>
-        </delete>
+        <delete dir="${build.dir}" quiet="true" />
+        <delete dir="${dist.dir}" quiet="true" />
+        <delete dir="${tmp.dir}" quiet="true" />
     </target>
 
 </project>
